@@ -1,6 +1,8 @@
 import requests
 import pandas as pd
 
+import sys
+print(sys.version)
 
 data = requests.get(
             f"http://data.mobility.brussels/traffic/api/counts/?request=devices&outputFormat=json&interval={15}")
@@ -9,7 +11,7 @@ columns = ['id', 'lat', 'lon']
 df_out = pd.DataFrame(columns=columns)
 all_data = data.json()['features']
 
-print(all_data)
+#print(all_data)
 
 
 # for sensor_dict in all_data:
