@@ -6,7 +6,7 @@ class Simulation:
     Class for simulating traffic in a given osm file with random TAZs and trips
     """
 
-    def __init__(self, osm_file : str, beginning =0, interval_end =3600, probability=0.72) -> None:
+    def __init__(self, osm_file : str, beginning =0, interval_end =3600, probability=0.72, router="duarouter") -> None:
 
         self.osm_file_name = osm_file
         self.beginning_value = beginning
@@ -22,7 +22,7 @@ class Simulation:
         self.generate_network()
         self.generate_poly()
         self.generate_trips()
-        self.generate_routes()
+        self.generate_routes(router)
         self.generate_config()
 
     def generate_network(self) -> None:
@@ -48,11 +48,12 @@ class Simulation:
         os.system(f"python $SUMO_HOME/tools/randomTrips.py -n {self.net_file_path} -b {self.beginning_value} \
                    -e {self.end_value} -p {self.probability_value} -t {self.poly_file_path} -o {self.trips_file_path} > log.txt")
 
-    def generate_routes(self) -> None:
+    def generate_routes(self, router:str) -> None:
         """
         Generate the routes file from the trips file
         """
-        os.system(f"duarouter --net-file {self.net_file_path} --route-files {self.trips_file_path} -o {self.routes_file_path} > log.txt")
+        if router == "duarouter":
+            os.system(f"duarouter --net-file {self.net_file_path} --route-files {self.trips_file_path} -o {self.routes_file_path} > log.txt")
     
 
     def generate_config(self) -> None:
@@ -81,6 +82,18 @@ class Simulation:
         """
         os.system(f"sumo -c {self.osm_file_name}.sumocfg")
 
+
+    def clean_files(self) -> None:
+        """
+        Clean the generated files
+        """
+        os.remove(self.net_file_path)
+        os.remove(self.poly_file_path)
+        os.remove(self.trips_file_path)
+        os.remove(self.routes_file_path)
+        os.remove(self.routes_file_path[:-4] + ".alt.xml")
+        os.remove(f"{self.osm_file_name}.sumocfg")
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: provide an osm file name as argument")
@@ -91,3 +104,4 @@ if __name__ == "__main__":
     sim.run_simulation()
 
 
+    #sim.clean_files() 
