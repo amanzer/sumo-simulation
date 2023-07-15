@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+Rerouter_experiment/ixelles
+ixelles_scenario/ixelles
+
 # C extensions
 *.so
 
