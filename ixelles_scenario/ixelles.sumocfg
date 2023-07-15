@@ -1,0 +1,9 @@
+<configuration>
+            <input>
+                <net-file value="/Users/amanzer/Desktop/memo/sumo-simulation/ixelles/ixelles.net.xml"/>
+                <route-files value="/Users/amanzer/Desktop/memo/sumo-simulation/ixelles/ixelles.routes.xml"/>
+                <additional-files value="/Users/amanzer/Desktop/memo/sumo-simulation/ixelles/ixelles.poly.xml"/>
+            </input>
+
+
+        </configuration>

@@ -1,3 +1,6 @@
-# Simulating traffic data
+# Simulation of Urban MObility (SUMO)
 
-Experiments with Simulation of Urban MObility, using synthetic simulation data and Brussels mobility/Google maps APIs.
+This repository lists experiments conducted using the open source traffic simulator.
+
+
+*Reference*: Guastella, D. A., & Bontempi, G. (2023). Traffic Modeling with SUMO: A Tutorial. ArXiv. /abs/2304.05982
