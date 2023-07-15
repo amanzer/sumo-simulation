@@ -1,0 +1,42 @@
+<net xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.16" junctionCornerDetail="5" limitTurnSpeed="5.50" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+  
+    <edge id="117228491#0"  priority="10" type="highway.tertiary" spreadType="center">
+        <lane id="117228491#0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="0.20" shape="1467.61,3203.07 1467.42,3203.11" />
+    </edge>
+    <edge id="124862963#2"  priority="8" type="highway.trunk_link" spreadType="center">
+        <lane id="124862963#2_0" index="0" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="0.26" shape="3009.87,4878.06 3009.95,4878.30" />
+        <lane id="124862963#2_1" index="1" disallow="pedestrian bicycle tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="0.26" shape="3006.83,4879.05 3006.91,4879.29" />
+    </edge>
+    <edge id="23230945#1"  priority="12" type="highway.primary" spreadType="center">
+        <lane id="23230945#1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="9.92" shape="1231.43,4426.34 1229.71,4436.10" />
+        <lane id="23230945#1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="9.92" shape="1228.28,4425.78 1226.55,4435.55" />
+        <lane id="23230945#1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="9.92" shape="1225.12,4425.22 1223.40,4434.99" />
+        <param key="ref" value="R20" />
+    </edge>
+    <edge id="258270305#2"  priority="10" type="highway.tertiary">
+        <lane id="258270305#2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="14.40" shape="3431.62,1783.82 3418.16,1778.69" />
+    </edge>
+    <edge id="307372336#0"  priority="11" type="highway.secondary" spreadType="center">
+        <lane id="307372336#0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="0.20" shape="2859.17,3277.24 2859.21,3277.44" />
+    </edge>
+    <edge id="40283535"  priority="11" type="highway.secondary" spreadType="center">
+        <lane id="40283535_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="0.20" shape="1468.97,3201.86 1468.84,3201.71" />
+    </edge>
+    <edge id="40747149#1" priority="11" type="highway.secondary">
+        <lane id="40747149#1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="8.11" shape="5570.74,2634.61 5575.63,2628.14" />
+        <lane id="40747149#1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="8.11" shape="5573.30,2636.54 5578.18,2630.07" />
+    </edge>
+    <edge id="452101333#1" priority="11" type="highway.secondary">
+        <lane id="452101333#1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="0.10" shape="4340.96,4642.04 4340.93,4642.13" />
+        <lane id="452101333#1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="0.10" shape="4337.97,4640.90 4337.94,4640.99" />
+    </edge>
+    <edge id="527010849#1" priority="10" type="highway.tertiary">
+        <lane id="527010849#1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="2.44" shape="3298.57,1543.70 3298.97,1541.30" />
+    </edge>
+    <edge id="583307357#0" priority="11" type="highway.secondary" spreadType="center">
+        <lane id="583307357#0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="0.20" shape="2371.49,3952.61 2371.32,3952.51" />
+    </edge>
+  
+
+</net>

@@ -1,0 +1,7 @@
+<additional>
+<rerouter id="example" edges="856293284 21766158#0 4726785#1">
+   <interval begin="700" end="3600">
+   <closingReroute id="4726717" disallow="passenger"/>
+   </interval>
+</rerouter>
+</additional>
