@@ -13,14 +13,16 @@ class Simulation:
         self.end_value = interval_end
         self.probability_value = probability
 
+
         self.osm_file_path = os.path.join(os.getcwd(), self.osm_file_name)
         self.net_file_path = self.osm_file_path + '.net.xml'
+        self.taz_file_path = self.osm_file_path + '.taz.xml'
         self.poly_file_path = self.osm_file_path + '.poly.xml'
         self.trips_file_path = self.osm_file_path + '.trips.xml'
         self.routes_file_path = self.osm_file_path + '.routes.xml'
 
         self.generate_network()
-        self.generate_poly()
+        self.generate_taz_poly()
         self.generate_trips()
         self.generate_routes(router)
         self.generate_config()
@@ -29,13 +31,15 @@ class Simulation:
         """
         Generate the network file from the osm file
         """
-        os.system(f"netconvert --osm-files {self.osm_file_path} --output-file {self.net_file_path} > log.txt")
+        os.system(f"netconvert --osm-files {self.osm_file_path} --output-file {self.net_file_path}")
     
-    def generate_poly(self) -> None:
+    def generate_taz_poly(self) -> None:
         """
         Generate the poly file from the network and osm files
         """
-        os.system(f"polyconvert --net-file {self.net_file_path} --osm-files {self.osm_file_path} --type-file $SUMO_HOME/data/typemap/osmPolyconvert.typ.xml -o {self.poly_file_path} > log.txt")
+        os.system(f"python $SUMO_HOME/tools/generateBidiDistricts.py {self.net_file_path} -o {self.taz_file_path} ")
+
+        os.system(f"polyconvert --net-file {self.net_file_path} --osm-files {self.osm_file_path} --type-file $SUMO_HOME/data/typemap/osmPolyconvert.typ.xml -o {self.poly_file_path}")
 
     def generate_trips(self) -> None:
         """
@@ -46,14 +50,14 @@ class Simulation:
         t : poly file
         """
         os.system(f"python $SUMO_HOME/tools/randomTrips.py -n {self.net_file_path} -b {self.beginning_value} \
-                   -e {self.end_value} -p {self.probability_value} -t {self.poly_file_path} -o {self.trips_file_path} > log.txt")
+                   -e {self.end_value} -p {self.probability_value} -t {self.taz_file_path} -o {self.trips_file_path} ")
 
     def generate_routes(self, router:str) -> None:
         """
         Generate the routes file from the trips file
         """
         if router == "duarouter":
-            os.system(f"duarouter --net-file {self.net_file_path} --route-files {self.trips_file_path} -o {self.routes_file_path} > log.txt")
+            os.system(f"duarouter --net-file {self.net_file_path} --route-files {self.trips_file_path} -o {self.routes_file_path} ")
     
 
     def generate_config(self) -> None:
@@ -71,11 +75,20 @@ class Simulation:
             f.write(configuration_file)
     
 
-    def run_simulation(self) -> None:
+    def run_simulation(self, tripinfo=True, edgedata=False, rerouter=False) -> None:
         """
         Run the simulation using command line with the configuration file
         """
-        os.system(f"sumo -c {self.osm_file_name}.sumocfg --tripinfo-output tripinfo2.xml --edgedata-output edgeData2.xml -a rerouter.add.xml  --ignore-route-errors")
+        command=f"sumo -c {self.osm_file_name}.sumocfg"
+
+        if tripinfo:
+            command += " --tripinfo-output tripinfo.xml"
+        if edgedata:
+            command += " --edgedata-output edgeData.xml"
+        if rerouter:
+            command += " -a rerouter.add.xml --ignore-route-errors"
+
+        os.system(command)
 
 
     def clean_files(self) -> None:
