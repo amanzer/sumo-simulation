@@ -6,7 +6,7 @@ class Simulation:
     Class for simulating traffic in a given osm file with random TAZs and trips
     """
 
-    def __init__(self, osm_file : str, beginning =0, interval_end =3600, probability=0.5, router="duarouter") -> None:
+    def __init__(self, osm_file : str, beginning =0, interval_end =3600, probability=0.2, router="duarouter") -> None:
 
         self.osm_file_name = osm_file
         self.beginning_value = beginning
@@ -75,7 +75,7 @@ class Simulation:
             f.write(configuration_file)
     
 
-    def run_simulation(self, tripinfo=True, edgedata=False, rerouter=False) -> None:
+    def run_simulation(self, tripinfo=True, edgedata=False, rerouter=False, fcdout=False, lanedata=False) -> None:
         """
         Run the simulation using command line with the configuration file
         """
@@ -87,6 +87,10 @@ class Simulation:
             command += " --edgedata-output edgeData.xml"
         if rerouter:
             command += " -a rerouter.add.xml --ignore-route-errors"
+        if fcdout:
+            command += " --fcd-output fcd.xml"
+        if lanedata:
+            command += " --lanedata-output laneData.xml"
 
         os.system(command)
 
@@ -111,7 +115,7 @@ if __name__ == "__main__":
 
 
     sim = Simulation(sys.argv[1])
-    sim.run_simulation()
+    sim.run_simulation(edgedata=True, fcdout=True, rerouter=True, lanedata=True)
 
 
     #sim.clean_files() 
